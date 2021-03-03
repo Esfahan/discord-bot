@@ -1,0 +1,9 @@
+discord.py[voice]>=1.4.1
+Flask==1.1.2
+pytz
+SQLAlchemy
+flask-sqlalchemy
+PyMySQL
+Flask-Migrate
+psycopg2
+pytz
