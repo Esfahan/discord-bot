@@ -4,6 +4,19 @@
 - Set `DISCORD_BOT_TOKEN` as a environment
 - Turn on "Free Dynos" on the Heroku dashbord
 
+## Help
+
+```
+No Category:
+  help    Shows this message
+  ping    Check the connection
+  results /results - Show the winners
+  winner  /winner {username} - Register the winner
+
+Type /help command for more info on a command.
+You can also type /help category for more info on a category.
+```
+
 
 ## Installation
 
