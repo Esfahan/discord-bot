@@ -1,0 +1,13 @@
+#!/bin/bash
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+MOUNT_DIR=/app
+
+set -x
+
+docker run --rm \
+    -e FLASK_APP=${MOUNT_DIR}/migrate.py \
+    --env-file ${SCRIPT_DIR}/.env \
+    -w ${MOUNT_DIR} \
+    -v ${SCRIPT_DIR}/../:${MOUNT_DIR} \
+    -it flask-migrater-discord:latest /bin/bash -c \
+    'python main.py'
