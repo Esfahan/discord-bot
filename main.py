@@ -36,19 +36,20 @@ async def ping(ctx):
 async def github(ctx):
     await ctx.send('https://github.com/Esfahan/discord-bot')
 
-@bot.command(brief='Register the winner', description='Required:\nwinner=winner\'s name as an impostor')
-async def winner(ctx, winner: str):
+@bot.command(brief='Register the impostor', description='Required:\nimpostor=impostor\'s name as an impostor\nwin_flg=0 is lose, 1 is win')
+async def imp(ctx, impostor: str, win_flg: bool):
     app.logger.info(f'bot.user, {bot.user}')
     app.logger.info(f'bot.user.name, {bot.user.name}')
     app.logger.info(f'bot.user.id, {bot.user.id}')
     app.logger.info(f'ctx.author.name, {ctx.author.name}')
     app.logger.info(f'ctx.author.id, {ctx.author.id}')
-    app.logger.info(f'winner, {winner}')
+    app.logger.info(f'impostor, {impostor}')
+    app.logger.info(f'win_flg, {win_flg}')
 
     rc = ResultsController()
-    await ctx.send(rc.winner(winner, ctx.author.name, ctx.author.id, ''))
+    await ctx.send(rc.impostor(impostor, win_flg, ctx.author.name, ctx.author.id, ''))
 
-@bot.command(pass_context=True, brief='Display the winners', description='Optional:\nlimit=int (0 means all)\norder_by=asc or desc')
+@bot.command(pass_context=True, brief='Display the impostors', description='Optional:\nlimit=int (0 means all)\norder_by=asc or desc')
 async def results(ctx, limit: int=None, order_by: str=None):
     app.logger.info(f'bot.user, {bot.user}')
     app.logger.info(f'bot.user.name, {bot.user.name}')

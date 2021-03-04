@@ -5,17 +5,14 @@ import datetime
 
 
 class Results(db.Model):
-    #__tablename__ = 'results'
-    #__table_args__ = {'extend_existing': True}
-
     id = db.Column('id', db.Integer, primary_key = True)
-    winner = db.Column('winner', db.String(50), nullable=False)
-    user_name = db.Column('user_name', db.String(50), nullable=False)
-    user_id = db.Column('user_id', db.String(50), nullable=False)
+    impostor = db.Column('impostor', db.String(50), nullable=False)
+    win_flg = db.Column('win_flg', db.Boolean, nullable=False)
+    posted_user_name = db.Column('posted_user_name', db.String(50), nullable=False)
+    posted_user_id = db.Column('posted_user_id', db.String(50), nullable=False)
     group_id = db.Column('group_id', db.String(50))
     created_at = db.Column('created_at', db.DateTime, nullable=False, server_default=db.func.current_timestamp())
     updated_at = db.Column('updated_at', db.DateTime, nullable=False, server_default=db.func.current_timestamp())
-
     def find(result_id: int):
         return db.session.query(Results).get(result_id)
 
@@ -36,17 +33,19 @@ class Results(db.Model):
         records = Results.find_latest(limit, order_by) if limit else Results.find_all(order_by)
 
         return [{'id': record.id,
-                 'winner': record.winner,
-                 #'user_name': record.user_name,
-                 #'user_id': record.user_id,
+                 'impostor': record.impostor,
+                 'win_flg': record.win_flg,
+                 #'posted_user_name': record.posted_user_name,
+                 #'posted_user_id': record.posted_user_id,
                  'created_at': Results._convert_datetime(record.created_at)} for record in records]
 
     def last_insert_record(result_id: int):
         record = Results.find(result_id)
         return {'id': record.id,
-                'winner': record.winner,
-                #'user_name': record.user_name,
-                #'user_id': record.user_id,
+                'impostor': record.impostor,
+                 'win_flg': record.win_flg,
+                #'posted_user_name': record.posted_user_name,
+                #'posted_user_id': record.posted_user_id,
                 'created_at': Results._convert_datetime(record.created_at)}
 
     def _convert_datetime(datetime_utc: datetime):
@@ -58,11 +57,12 @@ class Results(db.Model):
     def _convert_datetime_to_s(datetime_jst: datetime):
         return datetime_jst.strftime('%Y-%m-%d %H:%M:%S')
 
-    def create(winner: str, user_name: str, user_id: str, group_id: str=None):
+    def create(impostor: str, win_flg: int, posted_user_name: str, posted_user_id: str, group_id: str=None):
         results = Results()
-        results.winner = winner
-        results.user_name = user_name
-        results.user_id = user_id
+        results.impostor = impostor
+        results.win_flg = win_flg
+        results.posted_user_name = posted_user_name
+        results.posted_user_id = posted_user_id
         if group_id:
             results.group_id = group_id
         db.session.add(results)
