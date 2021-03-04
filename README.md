@@ -1,8 +1,8 @@
 # Discord-bot
 
 ## Quick Start
-- Set `DISCORD_BOT_TOKEN` as a environment
-- Turn on "Free Dynos" on the Heroku dashbord
+- Set `DISCORD_BOT_TOKEN` as an environment
+- Turn on "Free Dynos" on Heroku dashbord
 
 ## Help
 
