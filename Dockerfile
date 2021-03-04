@@ -1,4 +1,4 @@
-From python:3.7
+From python:3.8
 
 COPY ./requirements.txt /opt/requirements.txt
 
