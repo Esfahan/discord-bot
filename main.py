@@ -31,6 +31,10 @@ async def on_command_error(ctx, error):
 async def ping(ctx):
     await ctx.send('Pong! Let\'s play Among Us!!')
 
+@bot.command(brief='/github - Show GitHUB URL', description='/github - Show GitHUB URL')
+async def github(ctx):
+    await ctx.send('https://github.com/Esfahan/discord-bot')
+
 @bot.command(brief='/winner {username} - Register the winner', description='/winner {username} - Register the winner')
 async def winner(ctx, winner:str):
     app.logger.info(f'bot.user, {bot.user}')
