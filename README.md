@@ -2,7 +2,7 @@
 
 ## Quick Start
 - Set `DISCORD_BOT_TOKEN` as an environment
-- Turn on "Free Dynos" on the Heroku dashbord
+- Turn on "Free Dynos" on Heroku dashbord
 
 ## Help
 
