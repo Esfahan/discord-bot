@@ -11,6 +11,6 @@ class ResultsController:
 
         return helper.format_records([Results.last_insert_record(last_insert_id)])
 
-    def results(self):
-        records = Results.results()
+    def results(self, limit, order_by):
+        records = Results.results(limit, order_by)
         return [helper.format_records(arr) for arr in list(helper.split_list(records))]

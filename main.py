@@ -24,19 +24,20 @@ async def on_ready():
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
-    await ctx.send(error_msg)
-    #await ctx.send(orig_error)
+    app.logger.error(error_msg)
+    if os.environ.get('FLASK_ENV') != 'production':
+        await ctx.send(error_msg)
 
 @bot.command(brief='Check the connection', description='Check the connection')
 async def ping(ctx):
     await ctx.send('Pong! Let\'s play Among Us!!')
 
-@bot.command(brief='/github - Show GitHUB URL', description='/github - Show GitHUB URL')
+@bot.command(brief='Display GitHUB URL', description='Show GitHUB URL')
 async def github(ctx):
     await ctx.send('https://github.com/Esfahan/discord-bot')
 
-@bot.command(brief='/winner {username} - Register the winner', description='/winner {username} - Register the winner')
-async def winner(ctx, winner:str):
+@bot.command(brief='Register the winner', description='Required:\nwinner=winner\'s name as an impostor')
+async def winner(ctx, winner: str):
     app.logger.info(f'bot.user, {bot.user}')
     app.logger.info(f'bot.user.name, {bot.user.name}')
     app.logger.info(f'bot.user.id, {bot.user.id}')
@@ -47,17 +48,24 @@ async def winner(ctx, winner:str):
     rc = ResultsController()
     await ctx.send(rc.winner(winner, ctx.author.name, ctx.author.id, ''))
 
-@bot.command(brief='/results - Show the winners', description='/results - Show the winners')
-async def results(ctx):
+@bot.command(pass_context=True, brief='Display the winners', description='Optional:\nlimit=int (0 means all)\norder_by=asc or desc')
+async def results(ctx, limit: int=None, order_by: str=None):
     app.logger.info(f'bot.user, {bot.user}')
     app.logger.info(f'bot.user.name, {bot.user.name}')
     app.logger.info(f'bot.user.id, {bot.user.id}')
     app.logger.info(f'ctx.author, {ctx.author}')
     app.logger.info(f'ctx.author.id, {ctx.author.id}')
+    app.logger.info(f'limit, {limit}')
+    app.logger.info(f'limit, {order_by}')
 
     rc = ResultsController()
-    for results in rc.results():
-        await ctx.send(results)
+    results = rc.results(limit, order_by)
+
+    if results:
+        for result in results:
+            await ctx.send(result)
+    else:
+        await ctx.send('No record')
 
 
 bot.run(token)
