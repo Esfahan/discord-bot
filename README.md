@@ -4,17 +4,24 @@
 - Set `DISCORD_BOT_TOKEN` as an environment
 - Turn on "Free Dynos" on Heroku dashbord
 
-## DATABASE
+## DB Definition
 - [DATABASE.md](DATABASE.md)
 
-## Help
+## How to create your development environment
+- [DEVELOPMENT.md](DEVELOPMENT.md)
+
+
+## Usage
 
 ```
 No Category:
+  github  Shows GitHUB URL
   help    Shows this message
-  ping    Check the connection
-  results /results - Show the winners
-  winner  /winner {username} - Register the winner
+  imp     Registers the impostor
+  ping    Checks the connection
+  profile Shows Esfahan's profile
+  results Shows the impostors
+  youtube Shows Youtube URL
 
 Type /help command for more info on a command.
 You can also type /help category for more info on a category.
