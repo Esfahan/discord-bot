@@ -5,8 +5,16 @@ from models.results import Results
 
 class ResultsController:
 
-    def impostor(self, impostor, win_flg, posted_user_name, posted_user_id, group_id):
-        last_insert_id = Results.create(impostor, win_flg, posted_user_name, posted_user_id, group_id)
+    def impostor(self, **kwargs):
+        last_insert_id = Results.create(kwargs['impostor'],
+                                        kwargs['win_flg'],
+                                        kwargs['impostor02'],
+                                        kwargs['win_flg02'],
+                                        kwargs['impostor03'],
+                                        kwargs['win_flg03'],
+                                        kwargs['posted_user_name'],
+                                        kwargs['posted_user_id'],
+                                        kwargs['posted_server_id'])
         last_record = Results.last_insert_record(last_insert_id)
 
         return helper.format_records([Results.last_insert_record(last_insert_id)])
