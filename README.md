@@ -4,6 +4,9 @@
 - Set `DISCORD_BOT_TOKEN` as an environment
 - Turn on "Free Dynos" on Heroku dashbord
 
+## DATABASE
+- [DATABASE.md](DATABASE.md)
+
 ## Help
 
 ```
