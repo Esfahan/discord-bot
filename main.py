@@ -30,7 +30,11 @@ async def on_command_error(ctx, error):
 
 @bot.command(brief='Checks the connection', description='Checks the connection')
 async def ping(ctx):
-    await ctx.send('Pong! Let\'s play Among Us!!')
+    app.logger.info(ctx.guild.members)
+
+    for member in ctx.guild.members:
+        #await ctx.send('Pong! Let\'s play Among Us!!')
+        await ctx.send(f'member: {member.name}')
 
 @bot.command(brief='Shows GitHUB URL', description='Shows GitHUB URL')
 async def github(ctx):
@@ -49,6 +53,28 @@ async def profile(ctx):
             '[Youtube]\nGame: <https://www.youtube.com/channel/UCeqPhExV09EF5o8lZLO15Eg>\nCooking: <https://www.youtube.com/channel/UCDnYBh2TtUAfQ0Z-tl0jTyw>',
             '[cookpad]\n<https://cookpad.com/kitchen/13476667>']
     await ctx.send('\n\n'.join(urls))
+
+@bot.command(brief='Shows the reommended rules', description='Shows the reommended rules')
+async def yokoi(ctx):
+    rules = ['#impostor: インポスター人数',
+             'Confirm Ejects: 追放時に役職を表示するか',
+             '#Emergency Meetings: 緊急会議ボタンを押せる回数',
+             'Emergnecy Cooldown: 次の緊急会議ボタンができるまでの時間',
+             'Discussion Time: 投票前に会話出来る時間',
+             'Voting Time: 投票中に会話出来る時間',
+             'Anonymous Votes: 投票先を非公開にする',
+             'Player Speed: キャラクターの移動速度',
+             'Crewmate Vision: クルーの視界範囲',
+             'Impostor Vision: インポスターの視界範囲',
+             'Kill Cooldown: 次のKillができるまでの時間',
+             'Kill Distance: Killが出来る攻撃範囲の広さ',
+             'Task Bar Updates: タスクバーの更新タイミング',
+             'Visual Tasks: 他人のビジュアルタスクが見える',
+             'Common Tasks: コモンタスク',
+             'Long Task: ロングタスク',
+             'Short Task: ショートタスク']
+
+    await ctx.send('\n'.join(rules))
 
 @bot.command(brief='Registers the impostor', description='Required:\nimpostor=impostor\'s name as an impostor\nwin_flg=0 is lose, 1 is win')
 async def imp(ctx, impostor: str, win_flg: bool, impostor02: str=None, win_flg02: bool=None, impostor03: str=None, win_flg03: bool=None):
