@@ -1,6 +1,6 @@
 #!/bin/bash
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
-DBNAME=dsgame
+DB_NAME=dsgame
 
 set -x
 
@@ -14,6 +14,6 @@ DUMP_FILE=`ls -rt ../pg_dump/ | tail -n 1 | grep latest`
 docker exec \
     -w /pg_dump \
     -it line-db /bin/bash -c "\
-        pg_restore --verbose --clean --no-acl --no-owner -h localhost -U root -d ${DBNAME} ${DUMP_FILE}
+        pg_restore --verbose --clean --no-acl --no-owner -h localhost -U root -d ${DB_NAME} ${DUMP_FILE}
     "
 
