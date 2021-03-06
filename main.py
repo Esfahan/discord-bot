@@ -55,24 +55,25 @@ async def profile(ctx):
     await ctx.send('\n\n'.join(urls))
 
 @bot.command(brief='Shows the reommended rules', description='Shows the reommended rules')
-async def yokoi(ctx):
-    rules = ['#impostor: インポスター人数',
-             'Confirm Ejects: 追放時に役職を表示するか',
-             '#Emergency Meetings: 緊急会議ボタンを押せる回数',
-             'Emergnecy Cooldown: 次の緊急会議ボタンができるまでの時間',
-             'Discussion Time: 投票前に会話出来る時間',
-             'Voting Time: 投票中に会話出来る時間',
-             'Anonymous Votes: 投票先を非公開にする',
-             'Player Speed: キャラクターの移動速度',
-             'Crewmate Vision: クルーの視界範囲',
-             'Impostor Vision: インポスターの視界範囲',
-             'Kill Cooldown: 次のKillができるまでの時間',
-             'Kill Distance: Killが出来る攻撃範囲の広さ',
-             'Task Bar Updates: タスクバーの更新タイミング',
-             'Visual Tasks: 他人のビジュアルタスクが見える',
-             'Common Tasks: コモンタスク',
-             'Long Task: ロングタスク',
-             'Short Task: ショートタスク']
+async def rules(ctx):
+    rules = ['**[ルール一覧と推奨設定値]**\n',
+             '**impostor:**\n> インポスター人数\n> 推奨設定:  6〜7人 => 1人, 8〜10人 => 2人\n',
+             '**Confirm Ejects:**\n> 追放時に役職を表示する\n> 推奨設定: Off\n',
+             '**# Emergency Meetings:**\n> 緊急会議ボタンを押せる回数\n> 推奨設定: 1\n',
+             '**Emergnecy Cooldown:**\n> 次の緊急会議ボタンができるまでの時間\n> 推奨設定: 15s\n',
+             '**Discussion Time:**\n> 投票前に会話出来る時間\n> 推奨設定: 10s\n',
+             '**Voting Time:**\n> 投票中に会話出来る時間\n> 推奨設定: 180s\n',
+             '**Anonymous Votes:**\n> 投票先を非公開にする\n> 推奨設定: On\n',
+             '**Player Speed:**\n> キャラクターの移動速度\n> 推奨設定: 1.0x\n',
+             '**Crewmate Vision:**\n> クルーの視界範囲\n> 推奨設定: 1.0x\n',
+             '**Impostor Vision:**\n> インポスターの視界範囲\n> 推奨設定: 1.5x\n',
+             '**Kill Cooldown:**\n> 次のKillができるまでの時間\n> 推奨設定: 30.0s\n',
+             '**Kill Distance:**\n> Killが出来る攻撃範囲の広さ\n> 推奨設定: Medium\n',
+             '**Visual Tasks:**\n> 他人のタスクの遂行状況が見える\n> 推奨設定: On\n',
+             '**Task Bar Updates:**\n> タスクバーの更新タイミング\n> 推奨設定: Always\n',
+             '**# Common Tasks:**\n> コモンタスク\n> 推奨設定: 1\n',
+             '**# Long Task:**\n> ロングタスク\n> 推奨設定: 1\n',
+             '**# Short Task:**\n> ショートタスク\n> 推奨設定: 2']
 
     await ctx.send('\n'.join(rules))
 

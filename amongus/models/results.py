@@ -3,7 +3,6 @@ from sqlalchemy import desc
 from pytz import timezone
 import datetime
 
-
 class Results(db.Model):
     id = db.Column('id', db.Integer, primary_key = True)
     impostor = db.Column('impostor', db.String(50), nullable=False)
@@ -74,12 +73,6 @@ class Results(db.Model):
                impostor02: str, win_flg02: int,
                impostor03: str, win_flg03: int,
                posted_user_name: str, posted_user_id: str, posted_server_id: str=None):
-        print('create is called')
-        print(impostor02)
-        print(win_flg02)
-        print(impostor03)
-        print(win_flg03)
-
         results = Results()
         results.impostor = impostor
         results.win_flg = win_flg
