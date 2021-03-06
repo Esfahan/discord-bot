@@ -20,7 +20,7 @@ class DevelopmentConfig:
 class ProductionConfig:
 
     # Flask
-    DEBUG = True
+    DEBUG = False
 
     # SQLAlchemy
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}'.format(**{
