@@ -1,0 +1,18 @@
+#!/bin/bash
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+
+set -x
+
+cd ${SCRIPT_DIR}/../pg_dump &&
+heroku pg:backups:capture &&
+heroku pg:backups:download
+
+
+DUMP_FILE=`ls -rt ../pg_dump/ | tail -n 1 | grep latest`
+
+docker exec \
+    -w /pg_dump \
+    -it line-db /bin/bash -c "\
+        pg_restore --verbose --clean --no-acl --no-owner -h localhost -U root -d nozmon ${DUMP_FILE}
+    "
+
