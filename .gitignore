@@ -153,3 +153,5 @@ Thumbs.db
 *.mov
 *.wmv
 
+pg_dump/*
+!pg_dump/.keep
